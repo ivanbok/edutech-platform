@@ -1,0 +1,53 @@
+{% extends "eduplatform/layout.html" %}
+
+{% block body %}
+
+    <h2>Create MCQ Question</h2>
+    <hr>
+        <form action="{% url 'addmcqquestion' %}" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td VALIGN=TOP>
+                        <b>Subject:</b> <br>
+                        <select id="subject" name="subject" style="width:500px">
+                            <option value="" disabled selected>Select Subject</option>
+                            {% for subject in subjectList %}
+                                <option value="{{ subject }}">{{ subject }}</option>
+                            {% endfor %}
+                        </select>
+                        <br> 
+                        <b>Topic Tags (comma separated):</b><br> <input type="text" name="tags" style="width:500px"/>
+                    </td>
+                    <td VALIGN=TOP>
+                        <b>Level(s): </b><br>
+                        <select id="level" name="level" multiple style="width:500px">
+                            <option value="" disabled selected>Select Level</option>
+                            {% for level in levelsList %}
+                                <option value="{{ level }}">{{ level }}</option>
+                            {% endfor %}
+                        </select><br>
+                    </td>
+                    <td VALIGN=TOP>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+            Question: <br>
+            <textarea name="description" style="width:1000px; height: 70px;" maxlength="1000"></textarea><br><br>
+            Option A: <textarea name="description" style="width:928px; height: 20px;" maxlength="1000"></textarea><br><br>
+            Option B: <textarea name="description" style="width:928px; height: 20px;" maxlength="1000"></textarea><br><br>
+            Option C: <textarea name="description" style="width:928px; height: 20px;" maxlength="1000"></textarea><br><br>
+            Option D: <textarea name="description" style="width:928px; height: 20px;" maxlength="1000"></textarea><br><br>
+            Correct Answer:
+            <select id="answer" name="answer" style="width:300px">
+                <option value="" disabled selected>Select Option</option>
+                <option value="A">Option A</option>
+                <option value="B">Option B</option>
+                <option value="C">Option C</option>
+                <option value="D">Option D</option>
+            </select>  
+            <input type="submit">
+        </form>
+
+{% endblock %}
